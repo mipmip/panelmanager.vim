@@ -6,16 +6,16 @@ let g:PMPanelsViews = {}
 
 augroup PanelManagerTabInit
   autocmd!
-  autocmd VimEnter,TabEnter * call PMInitTab()
+  autocmd VimEnter,TabEnter * call panelmanager#PMInitTab()
 augroup END
 
-function! PMInitTab()
+function! panelmanager#PMInitTab()
   let t:PMcurrent_left_view = ''
   let t:PMcurrent_right_view = ''
   let t:PMcurrent_view = {}
 endfunction
 
-function! PMRegisterPanelView(position, identifier, open_command, close_command)
+function! panelmanager#PMRegisterPanelView(position, identifier, open_command, close_command)
 
   let l:registration = {}
   let l:registration['opener'] = a:open_command
@@ -25,12 +25,12 @@ function! PMRegisterPanelView(position, identifier, open_command, close_command)
 
 endfunction
 
-function! PMToggleView(identifier)
+function! panelmanager#PMToggleView(identifier)
 
   let l:previous_view_id = ''
 
-  if has_key(t:PMcurrent_view, PMGetPositionByIdentifier(a:identifier))
-    let l:previous_view_id = t:PMcurrent_view[PMGetPositionByIdentifier(a:identifier)]
+  if has_key(t:PMcurrent_view, panelmanager#PMGetPositionByIdentifier(a:identifier))
+    let l:previous_view_id = t:PMcurrent_view[panelmanager#PMGetPositionByIdentifier(a:identifier)]
 
     if l:previous_view_id != ''
       exec g:PMPanelsViews[l:previous_view_id]['closer']
@@ -40,18 +40,18 @@ function! PMToggleView(identifier)
   " only open when opening a new panel, else act as toggle
   if l:previous_view_id != a:identifier
     exec g:PMPanelsViews[a:identifier]['opener']
-    call PMSetCurrentViewForIdentifier(a:identifier)
+    call panelmanager#PMSetCurrentViewForIdentifier(a:identifier)
   else
-    let t:PMcurrent_view[PMGetPositionByIdentifier(a:identifier)] = ''
+    let t:PMcurrent_view[panelmanager#PMGetPositionByIdentifier(a:identifier)] = ''
 
   endif
 endfunction
 
-function! PMGetPositionByIdentifier(identifier)
+function! panelmanager#PMGetPositionByIdentifier(identifier)
   return g:PMPanelsViews[a:identifier]['position']
 endfunction
 
-function! PMSetCurrentViewForIdentifier(identifier)
+function! panelmanager#PMSetCurrentViewForIdentifier(identifier)
   let l:position = g:PMPanelsViews[a:identifier]['position']
   let t:PMcurrent_view[l:position] = a:identifier
 endfunction
