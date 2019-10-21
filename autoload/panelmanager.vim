@@ -25,6 +25,19 @@ function! panelmanager#PMRegisterPanelView(position, identifier, open_command, c
 
 endfunction
 
+function! panelmanager#PMPrepareToggleView(identifier)
+  let l:previous_view_id = ''
+
+  if has_key(t:PMcurrent_view, panelmanager#PMGetPositionByIdentifier(a:identifier))
+    let l:previous_view_id = t:PMcurrent_view[panelmanager#PMGetPositionByIdentifier(a:identifier)]
+
+    if l:previous_view_id != ''
+      exec g:PMPanelsViews[l:previous_view_id]['closer']
+    end
+  endif
+
+endfunction
+
 function! panelmanager#PMToggleView(identifier)
 
   let l:previous_view_id = ''
@@ -50,6 +63,7 @@ endfunction
 function! panelmanager#PMGetPositionByIdentifier(identifier)
   return g:PMPanelsViews[a:identifier]['position']
 endfunction
+
 
 function! panelmanager#PMSetCurrentViewForIdentifier(identifier)
   let l:position = g:PMPanelsViews[a:identifier]['position']

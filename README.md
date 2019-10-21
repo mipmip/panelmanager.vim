@@ -21,7 +21,7 @@ command.
 "                                     Position   Identifier,    Open command      Close Command
 call panelmanager#PMRegisterPanelView('left',    'nerdtree',    'NERDTree',       'NERDTreeClose')
 call panelmanager#PMRegisterPanelView('left',    'voom',        'Voom markdown',  'Voomquit')
-call panelmanager#PMRegisterPanelView('left',    'wimpi',       'WimpiMenuOpen',  'WimpiMenuClose')
+call panelmanager#PMRegisterPanelView('left',    'linny',       'LinnyMenuOpen',  'LinnyMenuClose')
 call panelmanager#PMRegisterPanelView('bottom',  'quickfix',    'copen',          'cclose')
 
 call panelmanager#PMRegisterPanelView('right',   'minimap',     'Minimap',        'MinimapClose')
@@ -31,7 +31,7 @@ call panelmanager#PMRegisterPanelView('right',   'tagbar',      'Tagbar',       
 "LEFT SIDEBAR                               Identifier
 map <C-F1>  :call panelmanager#PMToggleView('nerdtree')<CR>
 map <C-F2>  :call panelmanager#PMToggleView('voom')<CR>
-map <C-F3>  :call panelmanager#PMToggleView('wimpi')<CR>
+map <C-F3>  :call panelmanager#PMToggleView('linny')<CR>
 
 "BOTTOM SIDEBAR                             Identifier
 map <C-F5>  :call panelmanager#PMToggleView('quickfix')<CR>
