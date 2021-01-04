@@ -16,28 +16,31 @@ command.
 
 ```vim
 
+" Run this before every other command
+call panelmanager#init()
+
 " REGISTER PLUGIN AND THEIR PANEL POSITION
 
-"                                     Position   Identifier,    Open command      Close Command
-call panelmanager#PMRegisterPanelView('left',    'nerdtree',    'NERDTree',       'NERDTreeClose')
-call panelmanager#PMRegisterPanelView('left',    'voom',        'Voom markdown',  'Voomquit')
-call panelmanager#PMRegisterPanelView('left',    'linny',       'LinnyMenuOpen',  'LinnyMenuClose')
-call panelmanager#PMRegisterPanelView('bottom',  'quickfix',    'copen',          'cclose')
+                         POSITION  IDENTIFIER, OPEN COMMAND     CLOSE COMMAND
 
-call panelmanager#PMRegisterPanelView('right',   'minimap',     'Minimap',        'MinimapClose')
-call panelmanager#PMRegisterPanelView('right',   'tagbar',      'Tagbar',         'TagbarClose')
+call PMRegisterPanelView('left',   'nerdtree', 'NERDTree',      'NERDTreeClose')
+call PMRegisterPanelView('left',   'voom',     'Voom markdown', 'Voomquit')
+call PMRegisterPanelView('left',   'linny',    'LinnyMenuOpen', 'LinnyMenuClose')
+call PMRegisterPanelView('bottom', 'quickfix', 'copen',         'cclose')
+call PMRegisterPanelView('right',  'minimap',  'Minimap',       'MinimapClose')
+call PMRegisterPanelView('right',  'tagbar',   'Tagbar',        'TagbarClose')
 
-" map keys to plugins
-"LEFT SIDEBAR                               Identifier
-map <C-F1>  :call panelmanager#PMToggleView('nerdtree')<CR>
-map <C-F2>  :call panelmanager#PMToggleView('voom')<CR>
-map <C-F3>  :call panelmanager#PMToggleView('linny')<CR>
+" MAP KEYS TO PLUGINS
 
-"BOTTOM SIDEBAR                             Identifier
-map <C-F5>  :call panelmanager#PMToggleView('quickfix')<CR>
+"LEFT SIDEBAR                 IDENTIFIER
+map <F1>  :call PMToggleView('nerdtree')<CR>
+map <F2>  :call PMToggleView('voom')<CR>
+map <F3>  :call PMToggleView('linny')<CR>
 
-"RIGHT SIDEBAR                              Identifier
-map <C-F9>  :call panelmanager#PMToggleView('tagbar')<CR>
-map <C-F10> :call panelmanager#PMToggleView('minimap')<CR>
+"BOTTOM SIDEBAR               IDENTIFIER
+map <F5>  :call PMToggleView('quickfix')<CR>
+
+"RIGHT SIDEBAR                IDENTIFIER
+map <F9>  :call PMToggleView('tagbar')<CR>
+map <F10> :call PMToggleView('minimap')<CR>
 ```
-
