@@ -9,20 +9,21 @@ augroup PanelManagerTabInit
   autocmd VimEnter,TabEnter * call panelmanager#PMInitTab()
 augroup END
 
+function! panelmanager#init()
+endfunction
+
 function! panelmanager#PMInitTab()
   let t:PMcurrent_left_view = ''
   let t:PMcurrent_right_view = ''
   let t:PMcurrent_view = {}
 endfunction
 
-function! panelmanager#PMRegisterPanelView(position, identifier, open_command, close_command)
-
+function! PMRegisterPanelView(position, identifier, open_command, close_command)
   let l:registration = {}
   let l:registration['opener'] = a:open_command
   let l:registration['closer'] = a:close_command
   let l:registration['position'] = a:position
   let g:PMPanelsViews[a:identifier] = l:registration
-
 endfunction
 
 function! panelmanager#PMPrepareToggleView(identifier)
@@ -38,7 +39,7 @@ function! panelmanager#PMPrepareToggleView(identifier)
 
 endfunction
 
-function! panelmanager#PMToggleView(identifier)
+function! PMToggleView(identifier)
 
   let l:previous_view_id = ''
 
